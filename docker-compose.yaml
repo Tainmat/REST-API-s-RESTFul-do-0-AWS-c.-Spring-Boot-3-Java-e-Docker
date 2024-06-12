@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: spring-db
+    restart: always
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=spring-boot
+      - MYSQL_ROOT_PASSWORD=root
+    
+networks:
+  javanetwork:
+    driver: bridge
